@@ -7,7 +7,6 @@ export class Rol {
     primary: true,
     type: 'integer',
     name: 'ID',
-    generated: 'increment',
   })
   id: number;
 

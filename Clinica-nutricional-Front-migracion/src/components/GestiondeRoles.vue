@@ -86,7 +86,7 @@ export default {
       timeoutNotificacion: null,
 
       rolesDisponibles: [
-        { id: 1, rol: 'Admin' },
+        { id: 1, rol: 'Administrador' },
         { id: 2, rol: 'Nutricionista' },
         { id: 3, rol: 'Asistente' }
       ],
@@ -104,7 +104,7 @@ export default {
         const response = await axios.get(`${process.env.VUE_APP_API_URL}/usuario`)
         this.usuarios = response.data.map(u => {
           // Buscar el primer rol activo (sin fechaEliminacion)
-          const rolActivo = (u.rRolUsuario || []).find(r => !r.fechaEliminacion)
+          const rolActivo = (u.rRolUsuario || []).find(r => !r.fechaEliminacion && !r.fecha_Eliminacion )
           const rol = rolActivo?.fkRol?.rol || 'Sin rol'
           const idRelacionRol = rolActivo?.id || null
 
@@ -121,15 +121,17 @@ export default {
         this.usuariosFiltrados = [...this.usuarios]
 
         // Inicializar selects
+        const nuevosRolesSeleccionados = {};
         this.usuarios.forEach(u => {
-          this.$set(this.rolesSeleccionados, u.id, '')
-        })
+          nuevosRolesSeleccionados[u.id] = '';
+        });
+        this.rolesSeleccionados = nuevosRolesSeleccionados;
       } catch (error) {
-        console.error("Error al cargar usuarios:", error)
-        this.mostrarNotificacionTemporal("Error al cargar usuarios", "error")
-      } finally {
-        this.cargando = false
-      }
+          console.error("Error al cargar usuarios:", error)
+          this.mostrarNotificacionTemporal("Error al cargar usuarios", "error")
+        } finally {
+          this.cargando = false
+        }
     },
 
     filtrarUsuarios() {

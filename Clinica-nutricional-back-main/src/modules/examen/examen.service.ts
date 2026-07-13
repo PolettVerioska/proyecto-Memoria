@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateExamanDto } from './dto/create-examen.dto';
-import { UpdateExamanDto } from './dto/update-examen.dto';
+import { CreateExamenDto } from './dto/create-examen.dto';
 import { Examen } from './entities/examen.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -9,18 +8,17 @@ import { Repository } from 'typeorm';
 export class ExamenService {
   constructor(
     @InjectRepository(Examen)
-    private readonly alimentoRepository: Repository<Examen>,
+    private readonly examenRepository: Repository<Examen>,
   ) {}
 
-  public async createExamen(createExamanDto: CreateExamanDto): Promise<Examen> {
-    const examen = this.alimentoRepository.create({
-      fkFicha: {
-        id: createExamanDto.fkFicha_id,
-      },
-      nombreArchivo: createExamanDto.nombreArchivo,
-      nombreExamen: createExamanDto.nombreExamen,
+  public async createExamen(createExamenDto: any): Promise<Examen> {
+    const nuevoExamen = this.examenRepository.create({
+      fkFicha: { id: createExamenDto.fkFicha_id, },
+
+      nombreArchivo: createExamenDto.nombreArchivo,
+      nombreExamen: createExamenDto.nombreExamen,
     });
 
-    return this.alimentoRepository.save(examen);
+    return this.examenRepository.save(nuevoExamen);
   }
 }

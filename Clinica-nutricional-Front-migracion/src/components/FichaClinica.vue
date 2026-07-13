@@ -1,45 +1,71 @@
 <template>
   <div class="consulta-container">
     <form @submit.prevent="handleSubmit" class="consulta-form">
-      <h2 class="form-title">Consulta Nutricional</h2>
+      <h2 class="form-title">Historial Clínico</h2>
 
       <!-- 1. Datos del paciente -->
       <section class="form-section">
         <h3 class="section-title">Datos del paciente</h3>
         <div class="form-grid">
-          <input
-            v-model="form.nombre"
-            placeholder="Nombre completo"
-            required
-            class="form-input"
-          />
-          <input
-            v-model="form.rut"
-            placeholder="RUT o ID"
-            required
-            class="form-input"
-          />
-          <input
-            v-model="form.email"
-            placeholder="Correo electrónico"
-            type="email"
-            class="form-input"
-          />
-          <input
-            v-model="form.telefono"
-            placeholder="Teléfono"
-            class="form-input"
-          />
-          <select v-model="form.sexo" required class="form-input">
-            <option disabled value="">Sexo</option>
-            <option>F</option>
-            <option>M</option>
-          </select>
-          <input
-            v-model="form.fechaNacimiento"
-            type="date"
-            class="form-input"
-          />
+
+          <!-- Nombre -->
+          <div>
+            <label class="form-label">Nombre completo</label>
+            <input
+              v-model="form.nombre"
+              required
+              class="form-input"
+            />
+          </div>
+          
+          <!-- RUT -->
+          <div>
+            <label class="form-label">RUT</label>
+            <input
+              v-model="form.rut"
+              required
+              class="form-input"
+            />
+          </div>
+          
+          <!-- Correo -->
+          <div>
+            <label class="form-label">Correo electrónico</label>
+            <input
+              v-model="form.email"
+              type="email"
+              class="form-input"
+            />
+          </div>
+          
+          <!-- Teléfono -->
+          <div>
+            <label class="form-label">Teléfono</label>
+            <input
+              v-model="form.telefono"
+              class="form-input"
+            />
+          </div>
+          
+          <!-- Sexo -->
+          <div>
+            <label class="form-label">Sexo</label>
+            <select v-model="form.sexo" required class="form-input">
+              <option disabled value="">Seleccione...</option>
+              <option>F</option>
+              <option>M</option>
+            </select>
+          </div>
+          
+          <!-- Fecha de nacimiento -->
+          <div>
+            <label class="form-label">Fecha de nacimiento</label>
+            <input
+              v-model="form.fechaNacimiento"
+              type="date"
+              class="form-input"
+            />
+          </div>  
         </div>
       </section>
 
@@ -47,41 +73,66 @@
       <section class="form-section">
         <h3 class="section-title">Anamnesis Social</h3>
         <div class="form-grid">
-          <input
-            v-model="form.asisteCon"
-            placeholder="Asiste con..."
-            class="form-input"
-          />
-          <input v-model="form.hijos" placeholder="Hijos" class="form-input" />
-          <input
-            v-model="form.viveCon"
-            placeholder="Vive con..."
-            class="form-input"
-          />
-          <input
-            v-model="form.ocupacion"
-            placeholder="Ocupación"
-            class="form-input"
-          />
-          <input
-            v-model="form.escolaridad"
-            placeholder="Escolaridad"
-            class="form-input"
-          />
-          <input
-            v-model="form.redesDeApoyo"
-            placeholder="Redes de apoyo"
-            class="form-input"
-          />
-          <input
-            v-model="form.serviciosBasicos"
-            placeholder="Servicios básicos"
-            class="form-input"
-          />
+          
+         <div>
+            <label class="form-label">¿Asiste con alguien a las consultas?</label>
+            <input
+              v-model="form.asisteCon"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">¿Cuántos hijos tiene?</label>
+            <input 
+              v-model="form.hijos" 
+              class="form-input" 
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Vive con</label>
+            <input
+              v-model="form.viveCon"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Ocupación</label>
+            <input
+              v-model="form.ocupacion"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Escolaridad</label>
+            <input
+              v-model="form.escolaridad"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Redes de apoyo</label>
+            <input
+              v-model="form.redesDeApoyo"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Servicios básicos</label>
+            <input
+              v-model="form.serviciosBasicos"
+              class="form-input"
+            />
+          </div>
         </div>
       </section>
 
-      <!-- Anamnesis Alimentaria -->
+     <!--   Anamnesis Alimentaria 
       <section class="form-section">
         <h3 class="section-title">Anamnesis Alimentaria</h3>
         <div class="form-grid">
@@ -111,37 +162,91 @@
             class="form-input"
           />
         </div>
-      </section>
+      </section> -->
 
       <!-- Anamnesis Clínica -->
       <section class="form-section">
         <h3 class="section-title">Anamnesis Clínica</h3>
         <div class="form-grid">
-          <input
-            v-model="form.antecedenteFamiliar"
-            placeholder="Antecedente familiar"
-            class="form-input"
-          />
-          <input
-            v-model="form.patologiaBase"
-            placeholder="Patología base"
-            class="form-input"
-          />
-          <input
-            v-model="form.medicamento"
-            placeholder="Medicamentos"
-            class="form-input"
-          />
-          <input
-            v-model="form.anetecedenteQuirurgico"
-            placeholder="Antecedente quirúrgico"
-            class="form-input"
-          />
-          <input
-            v-model="form.alergia"
-            placeholder="Alergias"
-            class="form-input"
-          />
+
+          <div>
+            <label class="form-label">Antecedentes familiares</label>
+            <input
+              v-model="form.antecedenteFamiliar"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Patologías base</label>
+            <input
+              v-model="form.patologiaBase"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Medicamentos que utiliza</label>
+            <input
+              v-model="form.medicamento"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+              <label class="form-label">Utiliza insulina</label>
+            <select v-model="form.utilizaInsulina" required class="form-input">
+              <option disabled value="">Seleccione...</option>
+              <option>Si</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label">Antecedentes quirúrgicos</label>
+            <input
+              v-model="form.antecedenteQuirurgico"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Alergia a medicamentos</label>
+            <input
+              v-model="form.alergia"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Embarazo</label>
+            <input
+              v-model="form.embarazo"
+              class="form-input"
+            />
+          </div>
+          <div>
+            <label class="form-label">Semanas de gestación</label>
+            <input
+              v-model="form.semanaGestacion"
+              class="form-input"
+            />
+          </div>
+          <div>
+            <label class="form-label">Complicaciones gestacionales</label>
+            <input
+              v-model="form.complicacionGestacion"
+              class="form-input"
+            />
+          </div>
+          <div>
+            <label class="form-label">Resultados de Examenes</label>
+            <input
+              v-model="form.resultadosExamenes"
+              class="form-input"
+              placeholder="Escriba aquí los resultados de laboratorio"          
+            />
+          </div>
         </div>
       </section>
 
@@ -149,56 +254,102 @@
       <section class="form-section">
         <h3 class="section-title">Signos y Síntomas</h3>
         <div class="form-grid">
-          <input
-            v-model="form.diuresis"
-            placeholder="Diuresis"
-            class="form-input"
-          />
-          <input
-            v-model="form.apetito"
-            placeholder="Apetito"
-            class="form-input"
-          />
-          <input
-            v-model="form.calambre"
-            placeholder="Calambre"
-            class="form-input"
-          />
-          <input
-            v-model="form.polidipsia"
-            placeholder="Polidipsia"
-            class="form-input"
-          />
-          <input
-            v-model="form.poliuria"
-            placeholder="Poliuria"
-            class="form-input"
-          />
-          <input
-            v-model="form.deposicionBristol"
-            placeholder="Deposición (Bristol)"
-            class="form-input"
-          />
-          <input
-            v-model="form.tinnitus"
-            placeholder="Tinnitus"
-            class="form-input"
-          />
-          <input
-            v-model="form.sudoracionNocturna"
-            placeholder="Sudoración nocturna"
-            class="form-input"
-          />
-          <input
-            v-model="form.polifagia"
-            placeholder="Polifagia"
-            class="form-input"
-          />
-          <input
-            v-model="form.otroSigno"
-            placeholder="Otro síntoma"
-            class="form-input"
-          />
+
+          <div>
+            <label class="form-label">Presión Arterial</label>
+            <input
+              v-model="form.presionArterial"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Glicemia</label>
+            <input
+              v-model="form.glicemia"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Diuresis</label>
+            <input
+              v-model="form.diuresis"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Apetito</label>
+            <input
+              v-model="form.apetito"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Calambres</label>
+            <input
+              v-model="form.calambre"
+              class="form-input"
+            />
+          </div>
+          
+          <div>
+            <label class="form-label">Polidipsia</label>
+            <input
+              v-model="form.polidipsia"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Poliuria</label>
+            <input
+              v-model="form.poliuria"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Polifagia</label>
+            <input
+              v-model="form.polifagia"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Deposición (Bristol)</label>
+            <input
+              v-model="form.deposicionBristol"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Tinnitus</label>
+            <input
+              v-model="form.tinnitus"
+              class="form-input"
+            />
+          </div>
+          
+          <div>
+            <label class="form-label">Sudoración nocturna</label>
+            <input
+              v-model="form.sudoracionNocturna"
+              class="form-input"
+            />
+          </div>
+          
+          <div>
+            <label class="form-label">Otro síntoma</label>
+            <input
+              v-model="form.otroSigno"
+              class="form-input"
+            />
+          </div>
         </div>
       </section>
 
@@ -206,17 +357,76 @@
       <section class="form-section">
         <h3 class="section-title">Hábitos</h3>
         <div class="form-grid">
-          <input
-            v-model="form.alcohol"
-            placeholder="Alcohol"
-            class="form-input"
-          />
-          <input v-model="form.droga" placeholder="Drogas" class="form-input" />
-          <input
-            v-model="form.actividadFisica"
-            placeholder="Actividad física"
-            class="form-input"
-          />
+          
+          <div>
+            <label class="form-label">Alcohol</label>
+            <input
+              v-model="form.alcohol"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Drogas</label>
+            <input 
+              v-model="form.droga" 
+              class="form-input" />
+          </div>
+
+          <div>
+            <label class="form-label">Actividad física</label>
+            <input
+              v-model="form.actividadFisica"
+              class="form-input"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Anamnesis Alimentaria -->
+      <section class="form-section">
+        <h3 class="section-title">Anamnesis Alimentaria</h3>
+        <div class="form-grid">
+          
+          <div>
+            <label class="form-label">Alergias e intolerancias</label>
+            <input
+              v-model="form.alergiaIntolerancia"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Alimentos que no le gustan</label>
+            <input
+              v-model="form.alimentoNoGusta"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">Alimentos preferidos</label>
+            <input
+              v-model="form.alimentoPreferencia"
+              class="form-input"
+            />
+          </div>
+
+          <div> 
+            <label class="form-label">¿Cocina en casa?</label>
+            <input
+              v-model="form.cocinaEnCasa"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="form-label">¿Come habitualmente en?</label>
+            <input
+              v-model="form.habitualmenteComeEn"
+              class="form-input"
+            />
+          </div>
         </div>
       </section>
 
@@ -264,6 +474,14 @@
             >
               Quitar alimento
             </button>
+          </div>
+          <div>
+            <label class="form-label">Ingreso manual de alimentos</label>
+            <input
+              v-model="form.alimentosManuales"
+              class="form-input"
+              placeholder="Escriba aquí los alimentos si prefiere no seleccionarlos de la lista..."
+            />
           </div>
         </div>
 
@@ -325,34 +543,42 @@ export default {
         redesDeApoyo: "",
         serviciosBasicos: "",
 
+        antecedenteFamiliar: "",
+        patologiaBase: "",
+        medicamento: "",
+        utilizaInsulina: "",
+        antecedenteQuirurgico: "",
+        alergia: "",
+        embarazo: "",
+        semanaGestacion: "",
+        complicacionGestacion: "",
+        resultadosExamenes: "",
+
+        presionArterial: "",
+        glicemia: "",
+        diuresis: "",
+        apetito: "",
+        calambre: "",
+        polidipsia: "",
+        poliuria: "",
+        polifagia: "", 
+        deposicionBristol: "",
+        tinnitus: "",
+        sudoracionNocturna: "",
+        otroSigno: "",
+        
+        alcohol: "",
+        droga: "",
+        actividadFisica: "",
+        
         alergiaIntolerancia: "",
         alimentoNoGusta: "",
         alimentoPreferencia: "",
         cocinaEnCasa: "",
         habitualmenteComeEn: "",
 
-        antecedenteFamiliar: "",
-        patologiaBase: "",
-        medicamento: "",
-        anetecedenteQuirurgico: "",
-        alergia: "",
-
-        diuresis: "",
-        apetito: "",
-        calambre: "",
-        polidipsia: "",
-        poliuria: "",
-        deposicionBristol: "",
-        tinnitus: "",
-        sudoracionNocturna: "",
-        polifagia: "",
-        otroSigno: "",
-
-        alcohol: "",
-        droga: "",
-        actividadFisica: "",
-
         encuestaConsumo: [],
+        alimentosManuales: "",
       },
     };
   },
@@ -360,10 +586,48 @@ export default {
     async cargarAlimentos() {
       try {
         const res = await axios.get(`${process.env.VUE_APP_API_URL}/alimento`);
-        this.alimentosDisponibles = res.data;
-      } catch (err) {
-        console.error("Error cargando alimentos:", err);
+        const apiData = res.data && res.data.data ? res.data.data : res.data;
+        const alimentos = Array.isArray(apiData) && apiData.length
+          ? this.normalizeAlimentos(apiData)
+          : this.getAlimentosDefault();
+        this.alimentosDisponibles = alimentos.length
+          ? alimentos
+          : this.getAlimentosDefault();
+      } 
+      catch (error) {
+        console.error("Error cargando alimentos:", error);
+        this.alimentosDisponibles = this.getAlimentosDefault();
       }
+    },
+
+    normalizeAlimentos(items) {
+      const normalized = items
+        .map((item) => ({
+          id: item.id ?? item.ID,
+          alimento:
+            item.alimento ||
+            item.ALIMENTO ||
+            item.nombre ||
+            item.nombreAlimento ||
+            item.name ||
+            "",
+        }))
+        .filter((item) => item.alimento && item.id != null);
+      return normalized;
+    },
+
+    unwrapResponseData(response) {
+      return response?.data && response.data.data ? response.data.data : response?.data;
+    },
+
+    getAlimentosDefault() {
+      return [
+        { id: 1, alimento: "Manzana" },
+        { id: 2, alimento: "Plátano" },
+        { id: 3, alimento: "Arroz integral" },
+        { id: 4, alimento: "Pollo" },
+        { id: 5, alimento: "Lechuga" },
+      ];
     },
 
     async cargarFichaPorRut(rut) {
@@ -400,39 +664,50 @@ export default {
           redesDeApoyo: ficha.fkAnamnesisSocial.redesDeApoyo || "",
           serviciosBasicos: ficha.fkAnamnesisSocial.serviciosBasicos || "",
 
+          antecedenteFamiliar: ficha.fkAnamnesisClinica.antecedenteFamiliar || "",
+          patologiaBase: ficha.fkAnamnesisClinica.patologiaBase || "",
+          medicamento: ficha.fkAnamnesisClinica.medicamento || "",
+          utilizaInsulina: ficha.fkAnamnesisClinica.utilizaInsulina || "",  
+          antecedenteQuirurgico: ficha.fkAnamnesisClinica.antecedenteQuirurgico || "",
+          alergia: ficha.fkAnamnesisClinica.alergia || "",
+          embarazo: ficha.fkAnamnesisClinica.embarazo || "",
+          semanaGestacion: ficha.fkAnamnesisClinica.semanaGestacion || "",
+          complicacionGestacion: ficha.fkAnamnesisClinica.complicacionGestacion || "",
+          resultadosExamenes: ficha.fkAnamnesisClinica.resultadosExamenes || "",
+
+          presionArterial: signos.presionArterial || "",
+          glicemia: signos.glicemia || "",
+          diuresis: signos.diuresis || "",
+          apetito: signos.apetito || "",
+          calambre: signos.calambre || "",
+          polidipsia: signos.polidipsia || "",
+          poliuria: signos.poliuria || "",
+          polifagia: signos.polifagia || "",
+          deposicionBristol: signos.deposicionBristol || "",
+          tinnitus: signos.tinitus || "",
+          sudoracionNocturna: signos.sudoracionNocturna || "",
+          otroSigno: signos.otro || "",
+          
+          alcohol: habitos.alcohol || "",
+          droga: habitos.droga || "",
+          actividadFisica: habitos.actividadFisica || "",
+          
           alergiaIntolerancia: ficha.fkAnamnesisAlimentaria.alergiaIntolerancia || "",
           alimentoNoGusta: ficha.fkAnamnesisAlimentaria.alimentoNoGusta || "",
           alimentoPreferencia: ficha.fkAnamnesisAlimentaria.alimentoPreferencia || "",
           cocinaEnCasa: ficha.fkAnamnesisAlimentaria.cocinaEnCasa || "",
           habitualmenteComeEn: ficha.fkAnamnesisAlimentaria.habitualmenteComeEn || "",
 
-          antecedenteFamiliar: ficha.fkAnamnesisClinica.antecedenteFamiliar || "",
-          patologiaBase: ficha.fkAnamnesisClinica.patologiaBase || "",
-          medicamento: ficha.fkAnamnesisClinica.medicamento || "",
-          anetecedenteQuirurgico: ficha.fkAnamnesisClinica.anetecedenteQuirurgico || ficha.fkAnamnesisClinica.antecedenteQuirurgico || "",
-          alergia: ficha.fkAnamnesisClinica.alergia || "",
+          alimentosManuales: ficha.fkEncuestaTendenciaConsumo.alimentosManuales || "",
 
-          diuresis: signos.diuresis || "",
-          apetito: signos.apetito || "",
-          calambre: signos.calambre || "",
-          polidipsia: signos.polidipsia || "",
-          poliuria: signos.poliuria || "",
-          deposicionBristol: signos.deposicionBristol || "",
-          tinnitus: signos.tinitus || "",
-          sudoracionNocturna: signos.sudoracionNocturna || "",
-          polifagia: signos.polifagia || "",
-          otroSigno: signos.otro || "",
-
-          alcohol: habitos.alcohol || "",
-          droga: habitos.droga || "",
-          actividadFisica: habitos.actividadFisica || "",
         });
 
         this.form.encuestaConsumo = ficha.fkEncuestaTendenciaConsumo.rEncuestaTendenciaConsumoAlimento.map(item => ({
           fkAlimento_id: item.fkAlimento.id,
-          cuantosDiasSemana: item.cuantosDiasSemana
+          cuantosDiasSemana: item.cuantosDiasSemana,
         }));
-      } catch (error) {
+      } 
+      catch (error) {
         console.error("Error al cargar ficha para edición:", error);
       }
     },
@@ -463,45 +738,55 @@ export default {
         if (this.editando) {
           await axios.patch(`${process.env.VUE_APP_API_URL}/usuario/${this.usuarioId}`, usuarioPayload);
           await axios.patch(`${process.env.VUE_APP_API_URL}/anamnesis-social/${this.anamnesisSocialId}`, {
-          asisteCon: this.form.asisteCon,
-          hijos: this.form.hijos,
-          viveCon: this.form.viveCon,
-          ocupacion: this.form.ocupacion,
-          escolaridad: this.form.escolaridad,
-          redesDeApoyo: this.form.redesDeApoyo,
-          serviciosBasicos: this.form.serviciosBasicos
-        });
-          await axios.patch(`${process.env.VUE_APP_API_URL}/anamnesis-alimentaria/${this.anamnesisAlimentariaId}`, {
-              alimentoNoGusta: this.form.alimentoNoGusta,
-              alimentoPreferencia: this.form.alimentoPreferencia,
-              cocinaEnCasa: this.form.cocinaEnCasa,
-              habitualmenteComeEn: this.form.habitualmenteComeEn,
-              alergiaIntolerancia: this.form.alergiaIntolerancia
-            });          
+            asisteCon: this.form.asisteCon,
+            hijos: this.form.hijos,
+            viveCon: this.form.viveCon,
+            ocupacion: this.form.ocupacion,
+            escolaridad: this.form.escolaridad,
+            redesDeApoyo: this.form.redesDeApoyo,
+            serviciosBasicos: this.form.serviciosBasicos
+          });                    
           await axios.patch(`${process.env.VUE_APP_API_URL}/anamnesis-clinica/${this.anamnesisClinicaId}`, {
             antecedenteFamiliar: this.form.antecedenteFamiliar,
             patologiaBase: this.form.patologiaBase,
             medicamento: this.form.medicamento,
-            anetecedenteQuirurgico: this.form.anetecedenteQuirurgico,
+            utilizaInsulina: this.form.utilizaInsulina,
+            antecedenteQuirurgico: this.form.antecedenteQuirurgico,
             alergia: this.form.alergia,
+            embarazo: this.form.embarazo,
+            semanaGestacion: this.form.semanaGestacion,
+            complicacionGestacion: this.form.complicacionGestacion,
+            resultadosExamenes: this.form.resultadosExamenes
           });
           await axios.patch(`${process.env.VUE_APP_API_URL}/signo-sintoma/${this.signoSintomaId}`, {
+          presionArterial: this.form.presionArterial,
+          glicemia: this.form.glicemia,
           diuresis: this.form.diuresis,
           apetito: this.form.apetito,
           calambre: this.form.calambre,
           polidipsia: this.form.polidipsia,
           poliuria: this.form.poliuria,
+          polifagia: this.form.polifagia,
           deposicionBristol: this.form.deposicionBristol,
           tinitus: this.form.tinitus,
-          sudoracionNocturna: this.form.sudoracionNocturna,
-          polifagia: this.form.polifagia,
+          sudoracionNocturna: this.form.sudoracionNocturna,          
           otro: this.form.otro
-        });
+          });
           await axios.patch(`${process.env.VUE_APP_API_URL}/habito/${this.habitoId}`, {
           alcohol: this.form.alcohol,
           droga: this.form.droga,
           actividadFisica: this.form.actividadFisica
-        });
+          });
+          await axios.patch(`${process.env.VUE_APP_API_URL}/anamnesis-alimentaria/${this.anamnesisAlimentariaId}`, {
+            alimentoNoGusta: this.form.alimentoNoGusta,
+            alimentoPreferencia: this.form.alimentoPreferencia,
+            cocinaEnCasa: this.form.cocinaEnCasa,
+            habitualmenteComeEn: this.form.habitualmenteComeEn,
+            alergiaIntolerancia: this.form.alergiaIntolerancia
+          });
+          await axios.patch(`${process.env.VUE_APP_API_URL}/encuesta-tendencia-consumo/${this.encuestaId}`, {
+            alimentosManuales: this.form.alimentosManuales
+          });
 
           Swal.fire({ icon: 'success', title: 'Ficha actualizada correctamente', confirmButtonColor: '#b35fc3' });
         } else {
@@ -520,7 +805,39 @@ export default {
             escolaridad: this.form.escolaridad,
             redesDeApoyo: this.form.redesDeApoyo,
             serviciosBasicos: this.form.serviciosBasicos,
-          });
+          });        
+
+          const resAnamnesisClinica = await axios.post(`${process.env.VUE_APP_API_URL}/anamnesis-clinica`, {
+            antecedenteFamiliar: this.form.antecedenteFamiliar,
+            patologiaBase: this.form.patologiaBase,
+            medicamento: this.form.medicamento,
+            utilizaInsulina: this.form.utilizaInsulina,
+            antecedenteQuirurgico: this.form.antecedenteQuirurgico,
+            alergia: this.form.alergia,
+            embarazo: this.form.embarazo,
+            semanaGestacion: this.form.semanaGestacion,
+            complicacionGestacion: this.form.complicacionGestacion,
+            resultadosExamenes: this.form.resultadosExamenes,
+            signoSintoma: {      
+              presionArterial: this.form.presionArterial,
+              glicemia: this.form.glicemia,
+              diuresis: this.form.diuresis,
+              apetito: this.form.apetito,
+              calambre: this.form.calambre,
+              polidipsia: this.form.polidipsia,
+              poliuria: this.form.poliuria,
+              polifagia: this.form.polifagia,
+              deposicionBristol: this.form.deposicionBristol,
+              tinitus: this.form.tinnitus,
+              sudoracionNocturna: this.form.sudoracionNocturna,            
+              otro: this.form.otroSigno,
+            },
+            habito:{          
+              alcohol: this.form.alcohol,
+              droga: this.form.droga,
+              actividadFisica: this.form.actividadFisica,
+            },
+          });  
 
           const resAnamnesisAlimentaria = await axios.post(`${process.env.VUE_APP_API_URL}/anamnesis-alimentaria`, {
             alergiaIntolerancia: this.form.alergiaIntolerancia,
@@ -530,32 +847,8 @@ export default {
             habitualmenteComeEn: this.form.habitualmenteComeEn,
           });
 
-          const resAnamnesisClinica = await axios.post(`${process.env.VUE_APP_API_URL}/anamnesis-clinica`, {
-            antecedenteFamiliar: this.form.antecedenteFamiliar,
-            patologiaBase: this.form.patologiaBase,
-            medicamento: this.form.medicamento,
-            anetecedenteQuirurgico: this.form.anetecedenteQuirurgico,
-            alergia: this.form.alergia,
-            signoSintoma: {
-              diuresis: this.form.diuresis,
-              apetito: this.form.apetito,
-              calambre: this.form.calambre,
-              polidipsia: this.form.polidipsia,
-              poliuria: this.form.poliuria,
-              deposicionBristol: this.form.deposicionBristol,
-              tinitus: this.form.tinnitus,
-              sudoracionNocturna: this.form.sudoracionNocturna,
-              polifagia: this.form.polifagia,
-              otro: this.form.otroSigno,
-            },
-            habito: {
-              alcohol: this.form.alcohol,
-              droga: this.form.droga,
-              actividadFisica: this.form.actividadFisica,
-            },
-          });
-
           const encuestaPayload = {
+            alimentosManuales: this.form.alimentosManuales,
             rEncuestaTendenciaConsumoAlimentos: this.form.encuestaConsumo.map((item) => ({
               fkAlimento_id: item.fkAlimento_id,
               cuantosDiasSemana: item.cuantosDiasSemana.toString(),

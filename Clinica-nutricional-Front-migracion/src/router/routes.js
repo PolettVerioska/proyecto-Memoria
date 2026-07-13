@@ -16,6 +16,8 @@ import GestiondeRoles from "../components/GestiondeRoles.vue";
 import VerPlanNutricional from "../components/VerPlanNutricional.vue";
 import ConsultarEstadoFicha from "../components/ConsultarEstadoFicha.vue";
 import EditarPlan from "../components/EditarPlan.vue";
+import SolicitudExamen from "../components/SolicitudExamen.vue";
+import AgendaView from "../pages/AgendaView.vue";
 
 // Lazy loading para las demás páginas
 const Dashboard = () => import("@/pages/Dashboard.vue");
@@ -76,8 +78,8 @@ const routes = [
         component: Profile,
       },
       {
-        path: "/editar-plan/:id",
-        name: "Editar Plan Nutricional",
+        path: "editar-plan/:id",
+        name: "EditarPlanNutricional",
         component: EditarPlan,
       },
       {
@@ -125,6 +127,18 @@ const routes = [
         meta: { requiresAuth: false },
       },
       {
+        path: "solicitudexamenes",
+        name: "solicitud Examen",
+        component: SolicitudExamen,
+        meta: { requiresAuth: false },
+      },
+      {
+        path: "agenda",
+        name: "agenda",
+        component: AgendaView,
+        meta: { requiresAuth: false }, 
+      },
+      {
         path: "gestionusuarios",
         name: "gestion usuarios",
         component: GestiondeUsuarios,
@@ -169,7 +183,7 @@ const routes = [
   //   path: "*",
   //   redirect: "/login"
   // },
-  { path: "*", component: NotFound },
+  { path: "/:pathMatch(.*)*", component: NotFound },
 ];
 
 /**

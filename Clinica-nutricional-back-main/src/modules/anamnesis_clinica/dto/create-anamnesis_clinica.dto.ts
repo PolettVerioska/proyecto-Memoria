@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
+  IsOptional,
   IsString,
   MinLength,
   ValidateNested,
@@ -23,11 +24,31 @@ export class CreateAnamnesisClinicaDto {
 
   @IsString()
   @MinLength(1)
-  anetecedenteQuirurgico: string;
+  utilizaInsulina: string;
+
+  @IsString()
+  @MinLength(1)
+  antecedenteQuirurgico: string;
 
   @IsString()
   @MinLength(1)
   alergia: string;
+
+  @IsString()
+  @MinLength(1)
+  embarazo: string;
+
+  @IsString()
+  @MinLength(1)
+  semanaGestacion: string;
+
+  @IsString()
+  @MinLength(1)
+  complicacionGestacion: string;
+
+  @IsOptional()
+  @IsString()
+  resultadosExamenes?: string;
 
   @ValidateNested()
   @Type(() => CreateSignoSintomaPartialDto)

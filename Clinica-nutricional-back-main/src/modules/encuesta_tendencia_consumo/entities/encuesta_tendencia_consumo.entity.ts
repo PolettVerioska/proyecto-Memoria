@@ -13,6 +13,13 @@ export class EncuestaTendenciaConsumo {
   id: number;
 
   @Column({
+    type: 'text',
+    name: 'ALIMENTOS_MANUALES',
+    nullable: true,
+  })
+  alimentosManuales: string | null;
+
+  @Column({
     type: 'date',
     name: 'FECHA_ELIMINACION',
     nullable: true,

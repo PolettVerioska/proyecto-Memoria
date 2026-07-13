@@ -13,6 +13,22 @@ export class SignoSintoma {
 
   @Column({
     type: 'text',
+    name: 'PRESION_ARTERIAL',
+    default: '0/0',
+    nullable: false,
+  })
+  presionArterial: string;
+  
+  @Column({
+    type: 'text',
+    name: 'GLICEMIA',
+    default: '0',
+    nullable: false,
+  })
+  glicemia: string;
+  
+  @Column({
+    type: 'text',
     name: 'DIURESIS',
     nullable: false,
   })
@@ -48,6 +64,13 @@ export class SignoSintoma {
 
   @Column({
     type: 'text',
+    name: 'POLIFAGIA',
+    nullable: false,
+  })
+  polifagia: string;
+
+  @Column({
+    type: 'text',
     name: 'DEPOSICION_BRISTOL',
     nullable: false,
   })
@@ -66,14 +89,7 @@ export class SignoSintoma {
     nullable: false,
   })
   sudoracionNocturna: string;
-
-  @Column({
-    type: 'text',
-    name: 'POLIFAGIA',
-    nullable: false,
-  })
-  polifagia: string;
-
+  
   @Column({
     type: 'text',
     name: 'OTRO',

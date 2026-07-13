@@ -19,10 +19,30 @@ export class UpdateAnamnesisClinicaDto {
   @IsOptional()
   @IsString()
   @MinLength(1)
-  anetecedenteQuirurgico?: string;
+  utilizaInsulina?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  antecedenteQuirurgico?: string;
 
   @IsOptional()
   @IsString()
   @MinLength(1)
   alergia?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  embarazo?: string;
+  
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  semanaGestacion?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  complicacionGestacion?: string;
 }

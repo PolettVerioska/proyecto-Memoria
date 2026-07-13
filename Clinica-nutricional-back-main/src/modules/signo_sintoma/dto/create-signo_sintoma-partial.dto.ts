@@ -1,6 +1,15 @@
 import { IsString, MinLength } from 'class-validator';
 
 export class CreateSignoSintomaPartialDto {
+
+  @IsString()
+  @MinLength(1)
+  presionArterial: string;
+  
+  @IsString()
+  @MinLength(1)
+  glicemia: string;
+
   @IsString()
   @MinLength(1)
   diuresis: string;
@@ -23,6 +32,10 @@ export class CreateSignoSintomaPartialDto {
 
   @IsString()
   @MinLength(1)
+  polifagia: string;
+
+  @IsString()
+  @MinLength(1)
   deposicionBristol: string;
 
   @IsString()
@@ -32,10 +45,6 @@ export class CreateSignoSintomaPartialDto {
   @IsString()
   @MinLength(1)
   sudoracionNocturna: string;
-
-  @IsString()
-  @MinLength(1)
-  polifagia: string;
 
   @IsString()
   @MinLength(1)

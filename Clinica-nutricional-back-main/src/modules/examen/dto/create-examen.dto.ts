@@ -1,6 +1,6 @@
 import { IsBase64, IsNumber, IsString, Min, MinLength } from 'class-validator';
 
-export class CreateExamanDto {
+export class CreateExamenDto {
   @IsString()
   @MinLength(1)
   nombreExamen: string;

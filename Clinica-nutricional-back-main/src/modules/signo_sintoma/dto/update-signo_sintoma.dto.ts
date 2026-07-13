@@ -4,6 +4,16 @@ export class UpdateSignoSintomaDto {
   @IsOptional()
   @IsString()
   @MinLength(1)
+  presionArterial?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  glicemia?: string;
+  
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
   diuresis?: string;
 
   @IsOptional()
@@ -29,6 +39,11 @@ export class UpdateSignoSintomaDto {
   @IsOptional()
   @IsString()
   @MinLength(1)
+  polifagia?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
   deposicionBristol?: string;
 
   @IsOptional()
@@ -40,11 +55,6 @@ export class UpdateSignoSintomaDto {
   @IsString()
   @MinLength(1)
   sudoracionNocturna?: string;
-
-  @IsOptional()
-  @IsString()
-  @MinLength(1)
-  polifagia?: string;
 
   @IsOptional()
   @IsString()

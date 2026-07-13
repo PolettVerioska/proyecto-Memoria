@@ -7,7 +7,9 @@ import { Examen } from 'src/modules/examen/entities/examen.entity';
 import { PlanNutricional } from 'src/modules/plan-nutricional/entities/plan-nutricional.entity';
 import { Registro24h } from 'src/modules/registro24h/entities/registro24h.entity';
 import { Usuario } from 'src/modules/usuario/entities/usuario.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, JoinTable, ManyToMany } from 'typeorm';
+import { SolicitudExamen } from 'src/modules/solicitud_examen/entities/solicitud_examen.entity';
+import { Alimento } from 'src/modules/alimento/entities/alimento.entity';
 
 @Entity({ name: 'FICHA' })
 export class Ficha {
@@ -85,6 +87,22 @@ export class Ficha {
   )
   planesNutricionales: PlanNutricional[];
 
-  @OneToMany(() => Examen, (examan: Examen) => examan.fkFicha)
+  @OneToMany(() => Examen, (examen: Examen) => examen.fkFicha)
   examenes: Examen[];
+
+  @ManyToMany(() => SolicitudExamen)
+  @JoinTable({
+    name: 'r_ficha_solicitud_examen',
+    joinColumn: {
+      name: 'fkFicha_id',
+      referencedColumnName: 'id'},
+      inverseJoinColumn: {
+        name: 'fkSolicitudExamen_id',
+        referencedColumnName: 'id'
+      }
+    })
+  solicitudesExamen: SolicitudExamen[];
+ 
+  @OneToMany(() => Alimento, (alimento) => alimento.fkFicha)
+  alimentos: Alimento[];
 }

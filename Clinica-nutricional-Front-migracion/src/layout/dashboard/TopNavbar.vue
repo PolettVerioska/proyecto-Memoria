@@ -83,6 +83,23 @@ export default {
     CollapseTransition,
     Modal,
   },
+  data() {
+    return {
+      activeNotifications: false,
+      showMenu: false,
+      searchModalVisible: false,
+      searchQuery: "",
+      userRole: null
+    };
+  },
+  watch: {
+    '$route'() {
+      this.cargarRol();
+    }
+  },
+  mounted() {
+    this.cargarRol();
+  },
   computed: {
     routeName() {
       const { name } = this.$route;
@@ -91,14 +108,6 @@ export default {
     isRTL() {
       return this.$rtl.isRTL;
     },
-  },
-  data() {
-    return {
-      activeNotifications: false,
-      showMenu: false,
-      searchModalVisible: false,
-      searchQuery: "",
-    };
   },
   methods: {
     capitalizeFirstLetter(string) {
@@ -124,6 +133,19 @@ export default {
       localStorage.clear();
       this.$router.push("/login");
     },
+    cargarRol() {
+      const rolActivoStr = localStorage.getItem("rolActivo");
+      if (!rolActivoStr) {
+        this.userRole = null;
+        return;
+      }
+      try {
+        const rol = JSON.parse(rolActivoStr);
+        this.userRole = rol.nombre ? rol.nombre : rolActivoStr;
+      } catch (e) {
+        this.userRole = rolActivoStr;
+      }
+    }
   },
 };
 </script>

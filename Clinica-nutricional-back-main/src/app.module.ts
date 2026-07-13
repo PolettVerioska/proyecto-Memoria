@@ -24,11 +24,14 @@ import { PdfManagerModule } from './modules/pdf-manager/pdf-manager.module';
 import { PlanNutricionalModule } from './modules/plan-nutricional/plan-nutricional.module';
 import { REncuestaTendenciaConsumoAlimentoModule } from './modules/r-encuesta-tendencia-consumo-alimento/r-encuesta-tendencia-consumo-alimento.module';
 import { FileManagerModule } from './modules/file-manager/file-manager.module';
+import { SolicitudExamenModule } from './modules/solicitud_examen/solicitud_examen.module';
+import { AgendaModule } from './modules/agenda/agenda.module';
 import joiConfig from './core/configs/joi.config';
 import dbEnv from './shared/envs/db.env';
 import appEnv from './shared/envs/app.env';
 import jwtEnv from './shared/envs/jwt.env';
 import mailEnv from './shared/envs/mail.env';
+
 
 @Module({
   imports: [
@@ -44,6 +47,7 @@ import mailEnv from './shared/envs/mail.env';
         username: dbConfigService.dbUser,
         password: dbConfigService.dbPassword,
         database: dbConfigService.dbName,
+        schema: 'public',
         host: dbConfigService.dbHost,
         autoLoadEntities: true,
         synchronize: dbConfigService.dbSynchronize,
@@ -74,6 +78,8 @@ import mailEnv from './shared/envs/mail.env';
     PlanNutricionalModule,
     REncuestaTendenciaConsumoAlimentoModule,
     FileManagerModule,
+    SolicitudExamenModule,
+    AgendaModule,
   ],
 })
 export class AppModule {}

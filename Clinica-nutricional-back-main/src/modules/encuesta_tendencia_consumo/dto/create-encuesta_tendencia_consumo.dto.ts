@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { ArrayNotEmpty, ValidateNested } from 'class-validator';
+import { ArrayNotEmpty, ValidateNested, IsOptional, IsString } from 'class-validator';
 import { CreateREncuestaTendenciaConsumoAlimentoPartialDto } from 'src/modules/r-encuesta-tendencia-consumo-alimento/dto/create-r-encuesta-tendencia-consumo-alimento-partial.dto';
 
 export class CreateEncuestaTendenciaConsumoDto {
@@ -8,4 +8,8 @@ export class CreateEncuestaTendenciaConsumoDto {
   @ArrayNotEmpty()
   rEncuestaTendenciaConsumoAlimentos: CreateREncuestaTendenciaConsumoAlimentoPartialDto[] =
     [];
+
+  @IsOptional()
+  @IsString()
+  alimentosManuales?: string;
 }

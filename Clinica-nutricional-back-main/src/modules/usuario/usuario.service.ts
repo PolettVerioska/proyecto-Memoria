@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, OnModuleInit, Logger } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,13 +13,53 @@ import { GetUsuarioByRutDto } from './dto/get-usuario-by-rut.dto';
 import { IsNull } from 'typeorm';
 
 @Injectable()
-export class UsuarioService {
+export class UsuarioService implements OnModuleInit {
+  private readonly logger = new Logger(UsuarioService.name);
+
   constructor(
     @InjectRepository(Usuario)
     private readonly repository: Repository<Usuario>,
     private readonly rRolUsuarioService: RRolUsuarioService,
     private readonly mailManagerService: MailManagerService,
   ) {}
+
+  async onModuleInit() {
+    await this.crearAdminPorDefecto();
+  }
+
+  private async crearAdminPorDefecto() {
+    try {
+      const rutAdmin = 10000001;
+
+      const adminExistente = await this.repository.findOne({
+        where: { rut: rutAdmin },
+      });
+
+      if (adminExistente) {
+        this.logger.log('El Administrador por defecto ya existe. No se creará uno nuevo.');
+        return;
+      }
+
+      const nuevoAdmin = this.repository.create({
+        nombre: 'Super Administrador',
+        rut: rutAdmin,
+        correo: 'admin@clinica.com',
+        clave: 'Admin.1234',
+        fechaNacimiento: new Date('1980-01-01'),
+        telefono: 912345678,
+        sexo: 'F',
+      });
+      const adminGuardado = await this.repository.save(nuevoAdmin);
+
+      await this.rRolUsuarioService.createRRolUsuario({
+        fkRol_id: 3,
+        fkUsuario_id: adminGuardado.id,
+      });
+      this.logger.log(' Super Administrador creado con éxito');
+    } catch (error) {
+      this.logger.error('Error al intentar crear el Super Administrador:', error);
+    }
+  }
 
   public async findUserForLogin(
     rut: number,

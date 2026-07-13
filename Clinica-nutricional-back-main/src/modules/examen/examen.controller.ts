@@ -10,7 +10,7 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { ExamenService } from './examen.service';
-import { CreateExamanDto } from './dto/create-examen.dto';
+import { CreateExamenDto } from './dto/create-examen.dto';
 
 import { Examen } from './entities/examen.entity';
 
@@ -19,7 +19,7 @@ export class ExamenController {
   constructor(private readonly examenService: ExamenService) {}
 
   @Post()
-  async create(@Body() createExamanDto: CreateExamanDto): Promise<Examen> {
-    return this.examenService.createExamen(createExamanDto);
+  async create(@Body() createExamenDto: CreateExamenDto): Promise<Examen> {
+    return this.examenService.createExamen(createExamenDto);
   }
 }

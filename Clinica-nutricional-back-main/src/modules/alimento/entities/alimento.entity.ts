@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Ficha } from 'src/modules/ficha/entities/ficha.entity';
 
 @Entity({ name: 'ALIMENTO' })
 export class Alimento {
@@ -22,4 +23,12 @@ export class Alimento {
     nullable: true,
   })
   fechaEliminacion: Date | null;
+
+  @ManyToOne(() => Ficha,{
+    nullable: true,
+    onDelete: 'NO ACTION',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'FK_FICHA' })
+  fkFicha: Ficha;
 }

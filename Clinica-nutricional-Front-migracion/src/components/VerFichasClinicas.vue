@@ -658,7 +658,7 @@ export default {
         const payloadExamen = {
           nombreExamen: archivo.name,
           nombreArchivo: fileName,
-          fkFicha_id: this.fichaSeleccionada.id,
+          fkFicha_id: this.fichaSeleccionada.id 
         };
 
         const resexamen = await axios.post(
@@ -668,6 +668,10 @@ export default {
         console.log("Archivo subido:", resexamen);
 
         alert("Examen registrado correctamente");
+        if(!this.fichaSeleccionada.examenes){
+          this.$set(this.fichaSeleccionada, "examenes", []);
+        }
+        this.fichaSeleccionada.examenes.push(resexamen.data);
       } catch (error) {
         console.error("Error al subir examen:", error);
         alert("Ocurrió un error al subir el examen.");
@@ -1045,52 +1049,52 @@ export default {
 }
 
 .action-button.danger {
-  background-color: red;
+  background-color: rgb(255, 89, 89);
   color: white;
 }
 
 .action-button.danger:hover {
-  background-color: red;
+  background-color: rgb(135, 0, 0);
 }
 
 .action-button.history {
-  background-color: #6b46c1;
+  background-color: rgb(200, 0, 255);
   color: white;
 }
 
 .action-button.history:hover {
-  background-color: #553c9a;
+  background-color: rgb(124, 0, 128);
 }
 
 .action-button.control {
-  background-color: green;
+  background-color: rgb(200, 0, 255);
   color: white;
 }
 
 .action-button.control:hover {
-  background-color: green;
+  background-color: rgb(124, 0, 128);
 }
 
 .action-button.plan {
-  background-color: rgb(0, 245, 73);
+  background-color: rgb(200, 0, 255);
   color: white;
 }
 
 .action-button.plan:hover {
-  background-color: rgb(0, 245, 73);
+  background-color: rgb(124, 0, 128);
 }
 
 .action-button.subir {
-  background-color: rgb(0, 225, 255);
+  background-color: rgb(200, 0, 255);
   color: white;
 }
 
 .action-button.subir:hover {
-  background-color: rgb(0, 225, 255);
+  background-color: rgb(124, 0, 128);
 }
 
 .action-button.cancel {
-  background-color: #e2e8f0;
+  background-color: #bfdbff;
   color: #4a5568;
 }
 

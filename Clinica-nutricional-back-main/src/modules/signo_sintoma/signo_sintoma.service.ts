@@ -16,6 +16,8 @@ export class SignoSintomaService {
     createSignoSintomaDto: CreateSignoSintomaDto,
   ): Promise<SignoSintoma> {
     const signoSintoma = this.repository.create({
+      presionArterial: createSignoSintomaDto.presionArterial,
+      glicemia: createSignoSintomaDto.glicemia,
       apetito: createSignoSintomaDto.apetito,
       calambre: createSignoSintomaDto.calambre,
       deposicionBristol: createSignoSintomaDto.deposicionBristol,
@@ -48,6 +50,8 @@ export class SignoSintomaService {
     }
 
     const updatedSignoSintoma = this.repository.merge(signoSintoma, {
+      presionArterial: updateSignoSintomaDto.presionArterial,
+      glicemia: updateSignoSintomaDto.glicemia,
       apetito: updateSignoSintomaDto.apetito,
       calambre: updateSignoSintomaDto.calambre,
       deposicionBristol: updateSignoSintomaDto.deposicionBristol,

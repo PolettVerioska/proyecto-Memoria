@@ -192,7 +192,7 @@ export default {
             }
 
             if (roles[0].nombre === "Paciente") {
-              this.$router.push("/paciente/dashboard");
+              this.$router.push("/admin/dashboard");
               return;
             }
 

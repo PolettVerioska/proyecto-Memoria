@@ -21,10 +21,14 @@ export class AnamnesisClinicaService {
   ): Promise<AnamnesisClinica> {
     const anamnesisClinica = this.repository.create({
       alergia: createAnamnesisClinicaDto.alergia,
-      anetecedenteQuirurgico: createAnamnesisClinicaDto.anetecedenteQuirurgico,
+      antecedenteQuirurgico: createAnamnesisClinicaDto.antecedenteQuirurgico,
       antecedenteFamiliar: createAnamnesisClinicaDto.antecedenteFamiliar,
       medicamento: createAnamnesisClinicaDto.medicamento,
+      utilizaInsulina: createAnamnesisClinicaDto.utilizaInsulina,
       patologiaBase: createAnamnesisClinicaDto.patologiaBase,
+      embarazo: createAnamnesisClinicaDto.embarazo,
+      semanaGestacion: createAnamnesisClinicaDto.semanaGestacion,
+      complicacionGestacion: createAnamnesisClinicaDto.complicacionGestacion,
     });
 
     const anamnesisClinicaWithId = await this.repository.save(anamnesisClinica);
@@ -37,6 +41,8 @@ export class AnamnesisClinicaService {
     });
 
     await this.signoSintomaticoService.createSignoSintoma({
+      presionArterial: createAnamnesisClinicaDto.signoSintoma.presionArterial,
+      glicemia: createAnamnesisClinicaDto.signoSintoma.glicemia,
       apetito: createAnamnesisClinicaDto.signoSintoma.apetito,
       calambre: createAnamnesisClinicaDto.signoSintoma.calambre,
       deposicionBristol:
@@ -70,10 +76,14 @@ export class AnamnesisClinicaService {
 
     const updatedAnamnesisClinica = this.repository.merge(anamnesisClinica, {
       alergia: updateAnamnesisClinicaDto.alergia,
-      anetecedenteQuirurgico: updateAnamnesisClinicaDto.anetecedenteQuirurgico,
+      antecedenteQuirurgico: updateAnamnesisClinicaDto.antecedenteQuirurgico,
       antecedenteFamiliar: updateAnamnesisClinicaDto.antecedenteFamiliar,
       medicamento: updateAnamnesisClinicaDto.medicamento,
+      utilizaInsulina: updateAnamnesisClinicaDto.utilizaInsulina,
       patologiaBase: updateAnamnesisClinicaDto.patologiaBase,
+      embarazo: updateAnamnesisClinicaDto.embarazo,
+      semanaGestacion: updateAnamnesisClinicaDto.semanaGestacion,
+      complicacionGestacion: updateAnamnesisClinicaDto.complicacionGestacion,
     });
 
     return this.repository.save(updatedAnamnesisClinica);

@@ -17,16 +17,26 @@
           <sidebar-link
             to="/admin/listaPacientes"
             name="Ver Pacientes"
-            icon="tim-icons icon-pin"
+            icon="tim-icons icon-single-02"
           />
           <sidebar-link
             to="/admin/verplannutrional"
             name="Planes Nutricionales"
-            icon="tim-icons icon-pin"
+            icon="tim-icons icon-notes"
           />
-        </template>
+          <sidebar-link
+            to="/admin/solicitudexamenes"
+            name="Solicitar Examenes"
+            icon="tim-icons icon-bullet-list-67"
+          />
+          <sidebar-link
+            to="/admin/agenda"
+            name="Agenda"
+            icon="tim-icons icon-calendar-60"
+          />
+        </template> 
 
-        <!-- Administrador -->
+       <!--  Administrador -->
         <template v-else-if="userRole === 'Administrador'">
           <sidebar-link
             to="/admin/gestionusuarios"
@@ -65,6 +75,7 @@
 </template>
 
 <style lang="scss"></style>
+
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
@@ -77,51 +88,40 @@ export default {
     ContentFooter,
     DashboardContent,
   },
+  data() {
+    return {
+      userRole: null
+    };
+  },
+  watch: {
+    '$route'() {
+      this.cargarRol();
+    }
+  },
+  mounted() {
+    this.cargarRol();
+  },
   methods: {
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);
       }
     },
+    cargarRol() {
+      const rolActivoStr = localStorage.getItem("rolActivo");
+      
+      if (!rolActivoStr) {
+        this.userRole = null;
+        return;
+      }
 
-    getToken() {
-      return localStorage.getItem("token") || "";
-    },
-
-    getUserRole() {
-    const rolActivo = localStorage.getItem("rolActivo");
-
-    if (!rolActivo) return null;
-
-    const rol = JSON.parse(rolActivo);
-
-    console.log("=== ROL ACTIVO DESDE LOCALSTORAGE ===");
-    console.log(rol);
-
-    return rol.nombre;
+      try {
+        const rol = JSON.parse(rolActivoStr);
+        this.userRole = rol.nombre ? rol.nombre : rolActivoStr;
+      } catch (e) {
+        this.userRole = rolActivoStr;
+      }
     }
-
-
-    // getUserRole() {
-    //   const token = this.getToken();
-    //   if (!token) return null;
-
-    //   const payload = token.split(".")[1];
-    //   const base = decodeURIComponent(
-    //     Array.prototype.map
-    //       .call(atob(payload), function (c) {
-    //         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-    //       })
-    //       .join("")
-    //   );
-      //const parsed = JSON.parse(base);
-     // return parsed.rols?.[0]?.rol || null;
-   //},
-  },
-  computed: {
-    userRole() {
-      return this.getUserRole();
-    },
-  },
+  }
 };
 </script>

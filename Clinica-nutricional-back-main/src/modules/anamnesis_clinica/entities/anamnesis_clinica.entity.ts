@@ -35,10 +35,17 @@ export class AnamnesisClinica {
 
   @Column({
     type: 'text',
+    name: 'UTILIZA_INSULINA',
+    nullable: false,
+  })
+  utilizaInsulina: string;
+
+  @Column({
+    type: 'text',
     name: 'ANTECEDENTE_QUIRURGICO',
     nullable: false,
   })
-  anetecedenteQuirurgico: string;
+  antecedenteQuirurgico: string;
 
   @Column({
     type: 'text',
@@ -46,6 +53,34 @@ export class AnamnesisClinica {
     nullable: false,
   })
   alergia: string;
+
+  @Column({
+    type: 'text',
+    name: 'EMBARAZO',
+    nullable: false,
+  })
+  embarazo: string;
+
+  @Column({
+    type: 'text',
+    name: 'SEMANA_GESTACION',
+    nullable: false,
+  })
+  semanaGestacion: string;
+
+  @Column({
+    type: 'text',
+    name: 'COMPLICACION_GESTACION',
+    nullable: false,
+  })
+  complicacionGestacion: string;
+
+  @Column({
+    type: 'text',
+    name: 'RESULTADOS_EXAMENES',
+    nullable: true,
+  })
+  resultadosExamenes: string | null;
 
   @Column({
     type: 'date',
